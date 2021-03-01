@@ -12,12 +12,10 @@ const ReportPicker = (props) => {
 
   const handleExport = () => {
     let { loadedSims, selectedReports, exportFormat } = props.data.sim;
-    console.log(exportFormat);
+
     let exportFormatArray = Object.keys(exportFormat).filter(
       (d) => exportFormat[d] == true
     );
-
-    console.log(exportFormatArray);
 
     let parameters = `reports=${selectedReports.join(
       ","
@@ -25,9 +23,15 @@ const ReportPicker = (props) => {
 
     let query = encodeURI(`/exportreports?${parameters}`);
 
-    console.log(query);
-
-    fetch(query);
+    fetch(query).then((response) => {
+      response.json().then((data) => {
+        props.actions.setDialogContent({
+          title: "export feedback",
+          content: JSON.stringify(data),
+        });
+        props.actions.setDialogOpen(true);
+      });
+    });
   };
 
   return (

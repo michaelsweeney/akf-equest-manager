@@ -24,3 +24,17 @@ export function setSelectedReports(format) {
     payload: format,
   };
 }
+
+export function setDialogOpen(bool) {
+  return {
+    type: "SET_DIALOG_OPEN",
+    payload: bool,
+  };
+}
+
+export function setDialogContent(content) {
+  return {
+    type: "SET_DIALOG_CONTENT",
+    payload: content,
+  };
+}

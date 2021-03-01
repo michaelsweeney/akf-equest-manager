@@ -16,11 +16,16 @@ def hello():
 @app.route('/validatesim')
 def is_valid_sim():
     file = request.args.get('file')
+
     try:
-        eq.LoadSim(file)
-        return {'msg': True}
+        thesim = eq.LoadSim(file)
+        return {
+            'isvalid': True,
+            'fname': thesim.fname,
+            'directory': thesim.path
+        }
     except:
-        return {'msg': False}
+        return {'isvalid': False}
 
 @app.route('/exportreports')
 def export_reports():
@@ -28,6 +33,9 @@ def export_reports():
     files = request.args.get('files').split(',')
     reports = request.args.get('reports').split(',')
     exportformat = request.args.get('format').split(',')
+
+
+
 
     for file in files:
         simobj = eq.LoadSim(file)
@@ -42,56 +50,28 @@ def export_reports():
 
 
         for report in reports:
-
             if 'csv' in exportformat:
-                fname = fullexportpath + '/__' + simname + "_" + report + '_export_csv.csv'
+                fname = fullexportpath + '/__' + simname + "_" + report + '_export.csv'
                 methodname = report.lower().replace('-','')
                 rptmethod = getattr(simobj.sim, report.lower().replace("-",""))
                 rptdf = rptmethod()
                 rptdf.to_csv(fname)
             
             if 'xl' in exportformat:
-
-                app = xw.App()
-
-                fname = fullexportpath +  '/__' + simname +'_export_xl.xlsx'
-
-                if not os.path.isfile(fname):
-                    xw.Book().save(fname)
-
-                book = xw.Book(fname)
-
+                fname = fullexportpath + '/__' + simname + "_" + report + '_export.xlsx'
                 methodname = report.lower().replace('-','')
                 rptmethod = getattr(simobj.sim, report.lower().replace("-",""))
                 rptdf = rptmethod()
-
-                if report not in [x.name for x in book.sheets]:
-                    print ('ddddd')
-                    print (report)
-                    print (book.sheets)
-                    book.sheets.add(report)
-                
-                book.sheets[report].range('A1').value = rptdf
-
-                book.save()
-                book.close()
-
-                app.quit()
+                rptdf.to_excel(fname)
 
         if 'sim' in exportformat:
             simobj.sim_print(reports, directory=exportpath)
 
+    return {
+        'files': files,
+        'reports': reports,
+        'exportformat': exportformat
+    }
 
 
-
-
-    # reports, exportformat)
-
-
-
-
-
-
-
-    return {'msg': 'placeholder'}
 

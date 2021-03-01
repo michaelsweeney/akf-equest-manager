@@ -13,16 +13,25 @@ const LoadSimForm = (props) => {
     // validate simfile. this should be in a separate file
     fetch(`/validatesim?file=${inputValue}`).then((res) => {
       res.json().then((data) => {
-        let isvalidsim = data.msg;
-        if (isvalidsim) {
+        const { isvalid, directory, fname } = data;
+
+        if (isvalid) {
           props.actions.addSimFile(inputValue);
-          alert(`Sim File ${inputValue} successfully loaded`);
+          props.actions.setDialogContent({
+            title: "Valid Sim Loaded",
+            content: <div>Sim {fname} has been loaded</div>,
+          });
+          props.actions.setDialogOpen(true);
+          setInputValue("");
         } else {
-          alert("Error Loading Sim file");
+          props.actions.setDialogContent({
+            title: "Error",
+            content: <div>Unable to load {inputValue}</div>,
+          });
+          props.actions.setDialogOpen(true);
         }
       });
     });
-    setInputValue("");
   };
 
   return (
@@ -35,10 +44,10 @@ const LoadSimForm = (props) => {
           value={inputValue}
           onChange={(d) => setInputValue(d.target.value)}
         />
-        <Button onClick={handleClick} color="primary" variant="outlined">
-          ADD
-        </Button>
       </FormGroup>
+      <Button onClick={handleClick} color="primary" variant="contained">
+        ADD
+      </Button>
     </div>
   );
 };
