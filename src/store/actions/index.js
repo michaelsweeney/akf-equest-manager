@@ -38,3 +38,10 @@ export function setDialogContent(content) {
     payload: content,
   };
 }
+
+export function setActiveTab(tabname) {
+  return {
+    type: "SET_ACTIVE_TAB",
+    payload: tabname,
+  };
+}

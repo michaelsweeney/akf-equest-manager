@@ -4,6 +4,7 @@ const initialState = {
     title: "",
     content: "",
   },
+  activeTab: "load",
 };
 
 export default function uiReducer(state = initialState, action) {
@@ -20,7 +21,12 @@ export default function uiReducer(state = initialState, action) {
         dialogContent: action.payload,
       };
     }
-
+    case "SET_ACTIVE_TAB": {
+      return {
+        ...state,
+        activeTab: action.payload,
+      };
+    }
     default:
       return state;
   }
