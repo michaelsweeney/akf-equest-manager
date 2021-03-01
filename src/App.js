@@ -19,15 +19,15 @@ const theme = createMuiTheme({
 const App = (props) => {
   const [currentResponse, setCurrentResponse] = useState({});
 
-  useEffect(() => {
-    fetch("/test").then((res) => {
-      console.log(res);
-      res.json().then((data) => {
-        console.log(data);
-        setCurrentResponse(data);
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetch("/test").then((res) => {
+  //     console.log(res);
+  //     res.json().then((data) => {
+  //       console.log(data);
+  //       setCurrentResponse(data);
+  //     });
+  //   });
+  // }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -39,12 +39,12 @@ const App = (props) => {
         <ExportFormatSelector />
         <ReportPicker />
         <div>
-          -- def feedback: python API response
-          <div>{JSON.stringify(currentResponse)}</div>
+          {/* -- def feedback: python API response */}
+          {/* <div>{JSON.stringify(currentResponse)}</div> */}
         </div>
         <div>
-          -- def feedback: redux state
-          <div> {JSON.stringify(props.data)}</div>
+          {/* -- def feedback: redux state */}
+          {/* <div> {JSON.stringify(props.data)}</div> */}
         </div>
       </Container>
     </ThemeProvider>

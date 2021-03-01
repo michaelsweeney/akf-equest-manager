@@ -7,7 +7,7 @@ import { Button, Typography } from "@material-ui/core";
 const LoadedFileManager = (props) => {
   const simulations = props.data.sim.loadedSims;
 
-  const colnames = ["PATH"];
+  // const colnames = ["PATH"];
 
   return (
     <div>
@@ -15,11 +15,11 @@ const LoadedFileManager = (props) => {
       LOADED SIMULATIONS:
       <table>
         <thead>
-          <tr>
+          {/* <tr>
             {colnames.map((h, i) => (
               <th key={i}>{h}</th>
             ))}
-          </tr>
+          </tr> */}
         </thead>
         <tbody>
           {simulations.map((d, i) => (

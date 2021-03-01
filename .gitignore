@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 
- # python
+# python
 
  api/env/
  api/__pycache__
