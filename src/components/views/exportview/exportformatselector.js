@@ -8,7 +8,7 @@ import {
   Typography,
   Checkbox,
 } from "@material-ui/core";
-import { conn } from "../store/connect";
+import { conn } from "store/connect";
 
 const ExportFormatSelector = (props) => {
   const selectedOptions = props.data.sim.exportFormat;

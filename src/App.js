@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 
 import { Container, Typography } from "@material-ui/core";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import {
+  createMuiTheme,
+  ThemeProvider,
+  makeStyles,
+} from "@material-ui/core/styles";
 import { red, grey } from "@material-ui/core/colors";
 
 import { conn } from "./store/connect";
-import ExportFormatSelector from "./components/exportformatselector";
-import LoadedFileManager from "./components/loadedfilemanager";
-import ReportPicker from "./components/reportpicker";
+import ViewContentContainer from "./components/viewcontentcontainer";
+
 import FeedbackDialog from "./components/feedbackdialog";
 import Header from "./components/header";
+
 const theme = createMuiTheme({
   palette: {
     primary: red,
@@ -17,15 +21,22 @@ const theme = createMuiTheme({
   },
 });
 
+const useStyles = makeStyles({
+  root: {},
+  viewcontainer: {
+    padding: 20,
+  },
+});
+
 const App = (props) => {
+  const classes = useStyles();
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      <Container>
-        <LoadedFileManager />
-        <ExportFormatSelector />
-        <ReportPicker />
-      </Container>
+
+      <div className={classes.viewcontainer}>
+        <ViewContentContainer />
+      </div>
 
       <FeedbackDialog />
     </ThemeProvider>

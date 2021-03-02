@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { TextField, Button, FormGroup } from "@material-ui/core";
-import { conn } from "../store/connect";
-
-// sample sim...
-// P:\_Projects\190000\197147-000\D-Design Mgmt\Calc\Energy\eQuest\Nov 2019 LEED Submission Models\300 Rouse PropC - Baseline Design
+import { conn } from "store/connect";
 
 const LoadSimForm = (props) => {
   const [inputValue, setInputValue] = useState("");

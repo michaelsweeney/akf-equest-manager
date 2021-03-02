@@ -1,5 +1,5 @@
 import React from "react";
-import { conn } from "../store/connect";
+import { conn } from "store/connect";
 import { Dialog, DialogTitle } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 

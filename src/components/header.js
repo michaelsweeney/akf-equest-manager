@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 
 import { AppBar, Tabs, TabPanel, Tab, Typography } from "@material-ui/core";
-import { conn } from "../store/connect";
+import { conn } from "store/connect";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   root: {},
-  span: {
-    display: "inline-block !important",
-  },
+
   img: {
     height: "75px",
-    marginLeft: 20,
+    float: "right",
+    verticalAlign: "middle",
+    paddingRight: "20px",
   },
   title: {
-    position: "relative",
-    bottom: 25,
-    left: 20,
+    float: "left",
+    fontSize: 28,
+    paddingTop: 25,
+    paddingLeft: 15,
+    letterSpacing: 1.5,
   },
 });
 
@@ -28,24 +30,26 @@ const Header = (props) => {
   };
   return (
     <AppBar className={classes.root} color="transparent" position="static">
-      <div className={classes.span}>
-        <img className={classes.img} src="/img/akflogo.png" />
-        <Typography
-          className={classes.title}
-          variant="h4"
-          component={"span"}
-          color="primary"
-        >
-          eQUEST Results Manager
-        </Typography>
+      <div>
+        <span>
+          <Typography
+            component="span"
+            className={classes.title}
+            color="primary"
+          >
+            eQUEST sim results manager
+          </Typography>
+        </span>
+        <span>
+          <img className={classes.img} src="/img/akflogo.png" />
+        </span>
       </div>
 
       <Tabs value={props.data.ui.activeTab} onChange={handleTabChange}>
-        <Tab value="load" label="LOAD" />
-        <Tab value="report_export" label="REPORT EXPORT" />
+        <Tab value="load_view" label="LOAD" />
+        <Tab value="export_view" label="REPORT EXPORT" />
         <Tab value="table_view" label="TABLE VIEW" />
-        <Tab value="text_view" label="TEXT VIEW" />
-        <Tab label="hourly_vis" label="HOURLY VIS" />
+        <Tab value="chart_view" label="HOURLY VIS" />
       </Tabs>
     </AppBar>
   );

@@ -4,7 +4,7 @@ const initialState = {
     title: "",
     content: "",
   },
-  activeTab: "load",
+  activeTab: "load_view",
 };
 
 export default function uiReducer(state = initialState, action) {

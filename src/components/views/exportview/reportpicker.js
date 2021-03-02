@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TextField, Button } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
-import { conn } from "../store/connect";
+import { conn } from "store/connect";
 
 const ReportPicker = (props) => {
   const dummyreports = ["BEPS", "BEPU", "SS-A", "SS-D", "HOURLY"];

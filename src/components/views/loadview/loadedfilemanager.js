@@ -1,5 +1,5 @@
 import React from "react";
-import { conn } from "../store/connect";
+import { conn } from "store/connect";
 import LoadSimForm from "./loadsimform";
 
 import { Button, Typography } from "@material-ui/core";
