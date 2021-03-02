@@ -1,7 +1,7 @@
-export function addSimFile(filepath) {
+export function addSimFile(fileobj) {
   return {
     type: "ADD_SIM_FILE",
-    payload: filepath,
+    payload: fileobj,
   };
 }
 export function removeSimFile(filepath) {

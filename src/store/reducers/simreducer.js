@@ -14,7 +14,9 @@ export default function simReducer(state = initialState, action) {
       return {
         ...state,
         loadedSims: [
-          ...state.loadedSims.filter((d) => d != action.payload),
+          ...state.loadedSims.filter(
+            (d) => d.fullpath != action.payload.fullpath
+          ),
           action.payload,
         ],
       };
@@ -22,7 +24,9 @@ export default function simReducer(state = initialState, action) {
     case "REMOVE_SIM_FILE": {
       return {
         ...state,
-        loadedSims: state.loadedSims.filter((d) => d != action.payload),
+        loadedSims: state.loadedSims.filter(
+          (d) => d.fullpath != action.payload
+        ),
       };
     }
     case "SET_EXPORT_FORMAT": {

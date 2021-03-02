@@ -4,10 +4,13 @@ import { Typography } from "@material-ui/core";
 
 import { conn } from "store/connect";
 
-import ChartView from "./views/chartview";
-import ExportView from "./views/exportview";
-import TableView from "./views/tableview";
 import LoadView from "./views/loadview";
+
+import ChartView from "./views/chartview";
+import TableExportView from "./views/tableexportview";
+import TableDisplayView from "./views/tabledisplayview";
+import TextExportView from "./views/textexportview";
+import TextDisplayView from "./views/textdisplayview";
 
 const ViewContentContainer = (props) => {
   const { activeTab } = props.data.ui;
@@ -18,12 +21,20 @@ const ViewContentContainer = (props) => {
       component: <LoadView />,
     },
     {
-      label: "export_view",
-      component: <ExportView />,
+      label: "table_export_view",
+      component: <TableExportView />,
     },
     {
-      label: "table_view",
-      component: <TableView />,
+      label: "table_display_view",
+      component: <TableDisplayView />,
+    },
+    {
+      label: "text_export_view",
+      component: <TextExportView />,
+    },
+    {
+      label: "text_display_view",
+      component: <TextDisplayView />,
     },
     {
       label: "chart_view",
@@ -32,8 +43,11 @@ const ViewContentContainer = (props) => {
   ];
   return (
     <>
-      {tabcomponents.map((d) => (
-        <div style={{ display: d.label == activeTab ? "block" : "none" }}>
+      {tabcomponents.map((d, i) => (
+        <div
+          key={i}
+          style={{ display: d.label == activeTab ? "block" : "none" }}
+        >
           {d.component}
         </div>
       ))}
