@@ -18,10 +18,10 @@ export function setExportFormat(format) {
   };
 }
 
-export function setSelectedReports(format) {
+export function setSelectedReports(selection) {
   return {
     type: "SET_SELECTED_REPORTS",
-    payload: format,
+    payload: selection,
   };
 }
 
@@ -43,5 +43,12 @@ export function setActiveTab(tabname) {
   return {
     type: "SET_ACTIVE_TAB",
     payload: tabname,
+  };
+}
+
+export function setSelectedTextReports(selection) {
+  return {
+    type: "SET_SELECTED_TEXT_REPORTS",
+    payload: selection,
   };
 }

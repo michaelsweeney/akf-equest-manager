@@ -3,9 +3,9 @@ const initialState = {
   exportFormat: {
     csv: false,
     xl: false,
-    sim: false,
   },
   selectedReports: [],
+  selectedTextReports: [],
 };
 
 export default function simReducer(state = initialState, action) {
@@ -40,6 +40,13 @@ export default function simReducer(state = initialState, action) {
       return {
         ...state,
         selectedReports: action.payload,
+      };
+    }
+
+    case "SET_SELECTED_TEXT_REPORTS": {
+      return {
+        ...state,
+        selectedTextReports: action.payload,
       };
     }
     default:

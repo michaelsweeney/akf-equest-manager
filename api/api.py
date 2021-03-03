@@ -91,8 +91,6 @@ def export_reports():
     exportformat = request.args.get('format').split(',')
 
 
-
-
     for file in files:
         simobj = eq.LoadSim(file)
         simlocation = simobj.path
@@ -120,8 +118,7 @@ def export_reports():
                 rptdf = rptmethod()
                 rptdf.to_excel(fname)
 
-        if 'sim' in exportformat:
-            simobj.sim_print(reports, directory=exportpath)
+
 
     return {
         'files': files,
@@ -130,4 +127,26 @@ def export_reports():
     }
 
 
+@app.route('/exporttextreports')
+def export_text_reports():
 
+    files = request.args.get('files').split(',')
+    reports = request.args.get('reports').split(',')
+
+    for file in files:
+        simobj = eq.LoadSim(file)
+        simlocation = simobj.path
+        simname = simobj.fname
+        exportpath = "__python_outputs"
+        fullexportpath = simlocation + "/" + exportpath
+
+        if not os.path.exists(fullexportpath):
+            os.makedirs(fullexportpath)
+
+        simobj.sim_print(reports, directory=exportpath)
+
+    return {
+        'files': files,
+        'reports': reports,
+        'location': fullexportpath
+    }

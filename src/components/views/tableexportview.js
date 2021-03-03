@@ -32,10 +32,6 @@ const TableExportView = (props) => {
       tag: "csv",
       label: "CSV File(s)",
     },
-    {
-      tag: "sim",
-      label: "SIM file (for printing)",
-    },
   ];
 
   const dummyreports = ["BEPS", "BEPU", "SS-A", "SS-D", "HOURLY"];
@@ -50,10 +46,11 @@ const TableExportView = (props) => {
     let exportFormatArray = Object.keys(exportFormat).filter(
       (d) => exportFormat[d] == true
     );
+    let loadedSimArray = loadedSims.map((d) => d.fullpath);
 
     let parameters = `reports=${selectedReports.join(
       ","
-    )}&files=${loadedSims.join(",")}&format=${exportFormatArray}`;
+    )}&files=${loadedSimArray.join(",")}&format=${exportFormatArray}`;
 
     let query = encodeURI(`/exportreports?${parameters}`);
 
